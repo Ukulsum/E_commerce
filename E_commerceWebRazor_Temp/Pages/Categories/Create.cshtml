@@ -1,0 +1,34 @@
+﻿@page
+@model E_BookWebRazor_Temp.Pages.Categories.CreateModel
+
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Category</h2>
+            <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="mb-3 row p-1">
+            <label asp-for="category.Name" class="p-0"></label>
+            <input asp-for="category.Name" class="form-control" />
+            <span asp-validation-for="category.Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="category.CategoryOrder" class="p-0"></label>
+            <input asp-for="category.CategoryOrder" class="form-control" />
+            <span asp-validation-for="category.CategoryOrder" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary" style="width:150px"> Create </button>
+            </div>
+            <div class="col-6 col-md-3">
+                <button class="btn btn-outline-secondary" asp-page="/categories/index">Back To List</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
