@@ -4,6 +4,7 @@ using E_Book_DataAccess.Data;
 using E_Book_DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Drawing;
 
 namespace E_BookWeb.Areas.Admin.Controllers
 {
@@ -19,8 +20,8 @@ namespace E_BookWeb.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
-        {
-            List<Product> oProductList = _unitOfWork.ProductRepository.GetAll().ToList();
+         {
+            List<Product> oProductList = _unitOfWork.ProductRepository.GetAll(includeProperties: "Category").ToList();
             return View(oProductList);
         }
 
@@ -181,5 +182,13 @@ namespace E_BookWeb.Areas.Admin.Controllers
             TempData["success"] = "Product deleted successful";
             return RedirectToAction("Index");
         }
+
+        #region API CALLs
+        public IActionResult GetAll()
+        {
+            List<Product> oProductList = _unitOfWork.ProductRepository.GetAll(includeProperties: "Category").ToList();
+            return Json(new {data =  oProductList});
+        }
+        #endregion
     }
 }

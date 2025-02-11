@@ -1,9 +1,12 @@
 ﻿using E_Book.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+using Microsoft.AspNetCore.Identity;
 
 namespace E_Book_DataAccess.Data
 {
-    public class ECommerceDbContext : DbContext
+    public class ECommerceDbContext : IdentityDbContext<IdentityUser>
     {
         public ECommerceDbContext(DbContextOptions<ECommerceDbContext> options) : base(options) 
         {
@@ -16,6 +19,8 @@ namespace E_Book_DataAccess.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Action", CategoryOrder = 1},
                 new Category { Id = 2, Name = "SciFi", CategoryOrder = 2},

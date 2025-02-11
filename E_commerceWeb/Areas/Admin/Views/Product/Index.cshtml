@@ -11,7 +11,7 @@
         </div>
     </div>
 
-<table class="table table-bordered table-striped">
+<table id="tblData" class="table table-bordered table-striped" >
     <thead>
         <tr>
             <th>Title</th>
@@ -23,7 +23,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var obj in Model.OrderBy(o => o.Title))
+        @foreach(var obj in Model)
         {
             <tr>
                 <td>@obj.Title</td>
@@ -40,6 +40,33 @@
             </tr>
         }
        
-    </tbody>   
+    </tbody>
 </table>
 </div>
+
+    
+@section Scripts{
+    <script src="~/js/products.js"></script>
+    @* <script src="~/js/products.js"></script> *@
+    @* <script>
+
+    $(document).ready(function () {
+    loadDataTable();
+});
+
+
+function loadDataTable() {
+    dataTable = $('#tblData').DataTable({
+        "ajax": { url: '/admin/product/getall'},
+        "columns": [
+            { data: 'title', "width": "15%" },
+            //console.log({ data: "title" })
+            { data: 'salary', "width": "15%" },
+            { data: 'office', "width": "15%" },
+            { data: 'position', "width": "15%" }
+        ]
+    });
+    
+}
+</script> *@
+}
