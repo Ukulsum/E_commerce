@@ -13,7 +13,13 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ECommerceDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ECommerceDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ECommerceDbContext>().AddDefaultTokenProviders();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LoginPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
 builder.Services.AddRazorPages();
  
 //builder.Services.AddScoped<ICategoryRepository, CategoryReposity>();

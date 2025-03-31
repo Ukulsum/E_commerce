@@ -14,11 +14,13 @@ namespace E_Book_DataAccess.Repository
         private ECommerceDbContext _context;
         public ICategoryRepository CategoryRepository { get; private set; }
         public IProductRepository ProductRepository { get; private set; }
+        public ICompanyRepository CompanyRepository { get; private set; }
         public UnitOfWork(ECommerceDbContext context)
         {
             _context = context;
             CategoryRepository = new CategoryReposity(_context);
             ProductRepository = new ProductReposity(_context);
+            CompanyRepository = new CompanyReposity(_context);
         }
         
         public void Save()

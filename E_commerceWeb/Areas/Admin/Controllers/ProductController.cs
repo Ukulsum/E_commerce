@@ -1,7 +1,9 @@
 ﻿using E_Book.Models;
 using E_Book.Models.ViewModels;
+using E_Book.Utility;
 using E_Book_DataAccess.Data;
 using E_Book_DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Drawing;
@@ -9,6 +11,7 @@ using System.Drawing;
 namespace E_BookWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(SD.Role_Admin)]
     public class ProductController : Controller
     {
         //private readonly IProductRepository _ProductRepo;
